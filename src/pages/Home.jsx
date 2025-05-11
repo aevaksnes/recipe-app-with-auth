@@ -104,7 +104,14 @@ function Home() {
           {filteredRecipes.map(recipe => (
             <div key={recipe.id} className="border p-4 rounded bg-white shadow">
               <h2 className="text-xl font-semibold">{recipe.title}</h2>
-              <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
+              <p>
+                <strong>Ingredients:</strong>
+                <ul className="list-disc pl-5">
+                  {recipe.ingredients.split("\n").map((line, index) => (
+                    <li key={index}>{line}</li>
+                  ))}
+                </ul>
+              </p>
               <p><strong>Instructions:</strong> {recipe.instructions}</p>
               <p><strong>Calories:</strong> {recipe.calories}</p>
               <p><strong>Protein:</strong> {recipe.protein} g</p>
