@@ -34,9 +34,9 @@ function NewRecipe() {
       title,
       ingredients,
       instructions,
-      calories,
-      protein,
-      fiber,
+      calories: calories || 0, // Default to 0 if empty
+      protein: protein || 0,  // Default to 0 if empty
+      fiber: fiber || 0,      // Default to 0 if empty
       hashtags,
       created: new Date(),
       createdBy: user.displayName || "Unknown",

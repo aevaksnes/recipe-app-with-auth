@@ -4,13 +4,13 @@ import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpOQPvdsj6cPaCmTebhuMzdG7dUcJzbCA",
-  authDomain: "recipe-app-aeva.firebaseapp.com",
-  projectId: "recipe-app-aeva",
-  storageBucket: "recipe-app-aeva.firebasestorage.app",
-  messagingSenderId: "607612168179",
-  appId: "1:607612168179:web:cedadf7378392a267a5486"
-}
+  apiKey: "AIzaSyCquJwgiiMLMw3GZxkQ53Rg_mVd3eevuDQ",
+  authDomain: "recipe-dieting-from-inside-out.firebaseapp.com",
+  projectId: "recipe-dieting-from-inside-out",
+  storageBucket: "recipe-dieting-from-inside-out.firebasestorage.app",
+  messagingSenderId: "322081475047",
+  appId: "1:322081475047:web:125b4d6a061f803443d542"
+};
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)

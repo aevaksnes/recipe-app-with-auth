@@ -52,10 +52,10 @@ function EditRecipe() {
       title,
       ingredients,
       instructions,
-      calories,
-      protein,
-      fiber,
-      hashtags
+      calories: calories || 0, // Default to 0 if empty
+      protein: protein || 0,  // Default to 0 if empty
+      fiber: fiber || 0,      // Default to 0 if empty
+      hashtags,
     })
     navigate("/")
   }
