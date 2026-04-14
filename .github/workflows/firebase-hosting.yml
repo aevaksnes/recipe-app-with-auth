@@ -4,27 +4,34 @@ on:
   push:
     branches:
       - master
-      
+
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Oppdatert til v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # Oppdatert til v4
         with:
           node-version: 22
+          cache: 'npm' # Denne linjen gjør at fremtidige bygg går lynraskt!
 
-      - name: Clean install
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+      - name: Install Dependencies
+        run: npm ci # Bruker 'ci' i stedet for 'install' for rene bygg
 
       - name: Build Vite app
         run: npm run build
+        env:
+          # Her kobler vi sammen GitHub Secrets og appen din
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
